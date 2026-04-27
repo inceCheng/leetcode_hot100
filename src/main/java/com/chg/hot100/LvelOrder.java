@@ -13,21 +13,21 @@ public class LvelOrder {
         if (root == null) {
             return new ArrayList<>();
         }
-        Queue<TreeNode> order = new ArrayDeque<>();
         List<List<Integer>> res = new ArrayList<>();
-        order.add(root);
-        while (!order.isEmpty()) {
-            int size = order.size();
+        Queue<TreeNode> queue = new ArrayDeque<>();
+        queue.add(root);
+        while (!queue.isEmpty()) {
+            int size = queue.size();
             List<Integer> level = new ArrayList<>();
             for (int i = 0; i < size; i++) {
-                TreeNode curr = order.poll();
+                TreeNode curr = queue.poll();
+                level.add(curr.val);
                 if (curr.left != null) {
-                    order.add(curr.left);
+                    queue.add(curr.left);
                 }
                 if (curr.right != null) {
-                    order.add(curr.right);
+                    queue.add(curr.right);
                 }
-                level.add(curr.val);
             }
             res.add(level);
         }
