@@ -5,14 +5,12 @@ package com.chg.hot100;
  */
 public class LowestCommonAncestor {
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+        // 若当前节点为空，或者就是要找的 p、q 节点，则直接返回当前节点，表示找到
         if (root == null || root == p || root == q) {
             return root;
         }
-        // 递归找左子树，要么返回空，要么返回 root
         TreeNode left = lowestCommonAncestor(root.left, p, q);
-        // 递归找右子树 要么返回空，要么返回 root
         TreeNode right = lowestCommonAncestor(root.right, p, q);
-        // 左右都不为空，说明这个节点就是最近祖先
         if (left != null && right != null) {
             return root;
         }
