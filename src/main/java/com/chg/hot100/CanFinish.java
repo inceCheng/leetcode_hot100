@@ -18,7 +18,7 @@ public class CanFinish {
     public boolean canFinish(int numCourses, int[][] prerequires) {
         // 存储所有课程的入度
         int[] inDegrees = new int[numCourses];
-        // 构建邻接表，记录学完课程a后，可以解锁哪些课程
+        // 构建邻接表，记录学完课程a后，可以解锁哪些课程fd
         List<List<Integer>> adjacency = new ArrayList<>();
         for (int i = 0; i < numCourses; i++) {
             adjacency.add(new ArrayList<>());
