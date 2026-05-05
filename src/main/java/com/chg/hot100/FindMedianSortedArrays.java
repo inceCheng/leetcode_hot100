@@ -13,6 +13,14 @@ public class FindMedianSortedArrays {
         int m = nums1.length;
         int n = nums2.length;
         int left = 0;
+        // 在这个算法里，我们要找的 i 不是数组的下标，而是“切分线”的位置。
+        // 对于一个长度为 m 的数组，切分线可以切在最左边（i = 0，左半边 0 个元素），也可以切在最右边（i = m，左半边包含所有 m 个元素）。
+        // 因此，总共有 m + 1 个可能的切分位置。二分查找的搜索空间必须包含 m，所以右边界必须初始化为 right = m;。
+        //
+        // 如果设为 m - 1 会怎样？
+        // 考虑 nums1 = [1, 2]，nums2 = [3, 4]。
+        // 正确的切分线应该是 i = 2（把 nums1 全部划到左边）。但如果 right = 1，二分查找永远碰不到 i = 2 的情况，
+        // 最终 left > right 循环结束，触发你代码最后的 throw new IllegalArgumentException();
         int right = m;
         while (left <= right) {
             int i = left + (right - left) / 2;
@@ -30,6 +38,7 @@ public class FindMedianSortedArrays {
                 if ((m + n) % 2 == 1) {
                     return Math.max(nums1LeftMax, nums2LeftMax);
                 } else {
+                    // 注意返回的是 double类型，所以应该是除以 2.0，防止向下取整，精度丢失
                     return (Math.max(nums1LeftMax, nums2LeftMax) + Math.min(nums1RightMin, nums2RightMin)) / 2.0;
                 }
             }
