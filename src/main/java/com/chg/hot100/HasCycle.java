@@ -27,7 +27,6 @@ public class HasCycle {
             low = low.next;
             fast = fast.next.next;
             if (low == fast) {
-                // 相遇后，设置一个指针指向头，然后两个同时每次只走一步，相遇时的节点就是入环点
                 low = head;
                 while (low != fast) {
                     low = low.next;
