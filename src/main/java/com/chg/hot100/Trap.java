@@ -11,19 +11,19 @@ public class Trap {
         if (height == null || height.length <= 1) {
             return 0;
         }
+        int res = 0;
         int left = 0;
         int right = height.length - 1;
         int leftMax = Integer.MIN_VALUE;
         int rightMax = Integer.MIN_VALUE;
-        int res = 0;
         while (left <= right) {
             leftMax = Math.max(height[left], leftMax);
             rightMax = Math.max(height[right], rightMax);
             if (leftMax < rightMax) {
-                res += Math.max((leftMax - height[left]), 0);
+                res += Math.max(0, (leftMax - height[left]));
                 left++;
             } else {
-                res += Math.max((rightMax - height[right]), 0);
+                res += Math.max(0, (rightMax - height[right]));
                 right--;
             }
         }
